@@ -198,7 +198,12 @@ Implementa `caminos_con_obstaculos(grid)` donde `grid` es una matriz de 0s y 1s 
 
 **Preguntas de análisis:**
 - Compara el tiempo de `caminos_recursivo` y `caminos_bottom_up` para una cuadrícula 15×15. Aplica el test de doblamiento.
+Para la cuadrícula de 15x15, el algoritmo "caminos_recursivo" tardó 6.36879640 segundos, mientras que el "caminos_bottom_up" tardó apenas 0.00002954 segundos.
+   Bottom-Up: El factor al dividir la 10x10 entre la 5x5 (el doble) es de 5.312977099, esto nos demuestra que su crecimiento es controlable y proporcional al tamaño de la tabla, a un factor cercano a 4 como lo esperabamos.
+   Recursivo: En este caso, el problema simplemente explota, ya que contrario al caso anterior, en este el factor es de 1465.446097, lo cual nos demuestra que para el algoritmo recursivo, se comienza a poner peor entre más aumentemos el orden de nuestra matriz.
 - ¿Por qué la versión bottom-up no necesita recursión ni pila de llamadas? ¿Qué ventaja práctica tiene eso en lenguajes con límite de profundidad de pila?
+Bottom-up no necesita recursión porque este no construye la solución basandose en la pregunta de "de donde viene esto?", si no que lo que hace es construir la solución desde casos bases o sencillos y asi ir llegando a la solución poco a poco, lo que no obliga a estar llamando a la función cada vez que se quiera hacer o continuar al siguiente paso.
+La ventaja de bottom-up es que al usar arreglos y ciclos en lugar de apilar funciones, esto hace que se consuma muy poca memoria y esto es lo que se busca para que no se llegue a un límite en la recursión y no lleguemos a un error en el programa por falta de memoria.
 
 ---
 
