@@ -168,11 +168,11 @@ $$\text{caminos}(i, j) = \text{caminos}(i-1, j) + \text{caminos}(i, j-1)$$
 
    |   | n=1 | n=2 | n=3 | n=4 | n=5 |
    |---|---|---|---|---|---|
-   | **m=1** | | | | | |
-   | **m=2** | | | | | |
-   | **m=3** | | | | | |
-   | **m=4** | | | | | |
-   | **m=5** | | | | | |
+   | **m=1** |1 |1 |1 |1 |1 |
+   | **m=2** |1 |2 |3 |4 |5 |
+   | **m=3** |1 |3 |6 |10 |15 |
+   | **m=4** |1 |4 |10 |20 |35 |
+   | **m=5** |1 |5 |15 |35 |70 |
 
 3. ¿Reconoces el patrón? ¿Qué famosa estructura matemática aparece en la tabla?
 4. Ahora agrega un obstáculo: la celda (1,1) está bloqueada. ¿Cuántos caminos quedan para una cuadrícula 3×3? Razona sin código primero.
