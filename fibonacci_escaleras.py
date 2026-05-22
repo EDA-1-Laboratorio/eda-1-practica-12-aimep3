@@ -72,17 +72,17 @@ def fib_recursivo(n: int) -> int:
     """
     Calcula F(n) usando recursión directa.
     """
-    # PASO 1 – Validación de entrada.
+    # Paso 1 
     if n < 0:
         raise ValueError("n debe ser >= 0")
 
-    # PASO 2 – Casos base.
+    # Paso 2
     if n == 0:
         return 0
     if n == 1:
         return 1
 
-    # PASO 3 – Caso recursivo.
+    # Paso 3 
     return fib_recursivo(n - 1) + fib_recursivo(n - 2)   
 
 
@@ -133,25 +133,25 @@ def fib_memo(n: int, memo: dict = None) -> int:
     """
     Calcula F(n) con recursión + memoización (top-down).
     """
-    # PASO 1 – Inicialización del diccionario.
+    # Paso 1
     if memo is None:
         memo = {}
 
-    # PASO 2 – Validación de n.
+    # Paso 2
     if n < 0:
         raise ValueError("n debe ser >= 0")
 
-    # PASO 3 – Casos base.
+    # Paso 3
     if n == 0:
         return 0
     if n == 1:
         return 1
 
-    # PASO 4 – Revisión de caché.
+    # Paso 4
     if n in memo:
         return memo[n]
 
-    # PASO 5 – Caso recursivo con guardado.
+    # Paso 5
     memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
     return memo[n]    
 
@@ -200,28 +200,28 @@ def fib_bottom_up(n: int) -> int:
     """
     Calcula F(n) con tabulación iterativa (bottom-up).
     """
-    # PASO 1 – Validación de n.
+    # Paso 1
     if n < 0:
         raise ValueError("n debe ser >= 0")
 
-    # PASO 2 – Casos base especiales.
+    # Paso 2
     if n == 0:
         return 0
     if n == 1:
         return 1
 
-    # PASO 3 – Crea la tabla: una lista de n+1 ceros.
+    # Paso 3
     tabla = [0] * (n + 1)
 
-    # PASO 4 – Inicializa los casos base en la tabla.
+    # Paso 4
     tabla[0] = 0
     tabla[1] = 1
 
-    # PASO 5 – Bucle de llenado de izquierda a derecha.
+    # Paso 5
     for i in range(2, n + 1):
         tabla[i] = tabla[i - 1] + tabla[i - 2]
 
-    # PASO 6 – Devuelve tabla[n].
+    # Paso 6
     return tabla[n]    
 
 
@@ -278,17 +278,17 @@ def escaleras_recursivo(n: int) -> int:
     """
     Cuenta las formas de subir n peldaños (1 o 2 a la vez) — versión recursiva.
     """
-    # PASO 1 – Validación.
+    # Paso 1
     if n < 0:
         raise ValueError("n debe ser >= 0")
 
-    # PASO 2 – Casos base.
+    # Paso 1
     if n == 0:
         return 1
     if n == 1:
         return 1
 
-    # PASO 3 – Caso recursivo.
+    # Paso 2
     return escaleras_recursivo(n - 1) + escaleras_recursivo(n - 2)    
 
 
