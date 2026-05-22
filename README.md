@@ -164,6 +164,12 @@ $$\text{caminos}(i, j) = \text{caminos}(i-1, j) + \text{caminos}(i, j-1)$$
 ### Descubrimiento guiado
 
 1. Calcula a mano cuántos caminos hay en una cuadrícula 3×3. Dibuja todos los caminos posibles.
+RRDD
+RDRD
+RDDR
+DRRD
+DRDR
+DDRR
 2. Llena la siguiente tabla con los valores de `caminos(m, n)` para m, n ∈ {1, 2, 3, 4, 5}:
 
    |   | n=1 | n=2 | n=3 | n=4 | n=5 |
@@ -175,8 +181,9 @@ $$\text{caminos}(i, j) = \text{caminos}(i-1, j) + \text{caminos}(i, j-1)$$
    | **m=5** |1 |5 |15 |35 |70 |
 
 3. ¿Reconoces el patrón? ¿Qué famosa estructura matemática aparece en la tabla?
+La estructura que se forma es el Triángulo de Pascal, que se puede ver claramente a la hora de voltear el cuadrado 45° y con eso podemos observar como la suma de los números vecinos forman el que le sigue hacia abajo.
 4. Ahora agrega un obstáculo: la celda (1,1) está bloqueada. ¿Cuántos caminos quedan para una cuadrícula 3×3? Razona sin código primero.
-
+Ya que los caminos totales son 6 (y ya los tenemos), podemos deducir fácil que hay 4 caminos que pasan por la celda (1,1) y por ende solo hacemos la resta de 6-4=2 y es el total de caminos posibles que no pasan por la casilla de (1,1).
 ### Problema 2A — Versiones sin obstáculos (archivo: `caminos_cuadricula.py`)
 
 Implementa `caminos_recursivo`, `caminos_memo` y `caminos_bottom_up`. La versión bottom-up devuelve **tanto el resultado como la tabla completa** para poder imprimirla.
