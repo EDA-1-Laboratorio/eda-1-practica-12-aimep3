@@ -131,8 +131,8 @@ Después de implementar, ejecuta el siguiente experimento y llena la tabla:
 
 **Preguntas de análisis:**
 - ¿A partir de qué valor de n el tiempo recursivo se vuelve notablemente mayor?
-- Aplica el test de doblamiento al tiempo recursivo: ¿qué razón r(n) obtienes?
-- Compara la razón con la tabla del Marco metodológico. ¿Qué clase de complejidad te sugiere?
+- Aplica el test de doblamiento al tiempo recursivo: ¿qué razón r(n) obtienes? r(n)= T(n)/T(n-1)
+- Compara la razón con la tabla del Marco metodológico. ¿Qué clase de complejidad te sugiere? Complejidad exponencial, se simplifica como 0(2^n)
 
 ### Problema 1B — Escalando peldaños
 
@@ -143,9 +143,9 @@ Por ejemplo: para n=3, las formas son (1,1,1), (1,2), (2,1) → **3 formas**.
 Implementa `escaleras_recursivo`, `escaleras_memo` y `escaleras_bottom_up` en el mismo archivo.
 
 **Preguntas de reflexión:**
-- ¿Cuál es la recurrencia matemática de este problema? Escríbela formalmente.
-- ¿En qué se parece a Fibonacci? ¿En qué difiere exactamente (valores de los casos base)?
-- Si el robot también pudiera subir 3 peldaños en un turno, ¿cómo cambiaría la recurrencia?
+- ¿Cuál es la recurrencia matemática de este problema? Escríbela formalmente. escaleras (n)= {1 si n=0,1 si n = 1, escaleras (n-1) + escaleras(n-2)   si 2≤n
+- ¿En qué se parece a Fibonacci? ¿En qué difiere exactamente (valores de los casos base)? Se parece en su estructura. Para resol el problema de tamaño n y necesitas sumar los resultados de los dos subproblemas inmediatamente anteriores.
+- Si el robot también pudiera subir 3 peldaños en un turno, ¿cómo cambiaría la recurrencia? Para 1 peldaño: 1 forma (1). Para 2 peldaños: 2 formas (1,1 y 2). Para 3 peldaños 4 formas (1,1,1; 1,2; 2,1 y 3).
 
 ---
 
