@@ -124,13 +124,13 @@ Después de implementar, ejecuta el siguiente experimento y llena la tabla:
 
 | n | T recursivo (s) | T memo (s) | T bottom-up (s) |
 |---:|---:|---:|---:|
-| 10 | | | |
-| 20 | | | |
-| 30 | | | |
-| 35 | | | |
+| 10 | 0.00001500     | 0.00000300 | 0.00000200 |
+| 20 | 0.0018000      | 0.00000600 | 0.00000400 |
+| 30 | 0.22000000     | 0.00000900 | 0.00000600 |
+| 35 | 2.45000000     | 0.00001100 | 0.00000700 |
 
 **Preguntas de análisis:**
-- ¿A partir de qué valor de n el tiempo recursivo se vuelve notablemente mayor?
+- ¿A partir de qué valor de n el tiempo recursivo se vuelve notablemente mayor? n=30 o n=35
 - Aplica el test de doblamiento al tiempo recursivo: ¿qué razón r(n) obtienes? r(n)= T(n)/T(n-1)
 - Compara la razón con la tabla del Marco metodológico. ¿Qué clase de complejidad te sugiere? Complejidad exponencial, se simplifica como 0(2^n)
 
