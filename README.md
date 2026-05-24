@@ -356,7 +356,7 @@ Implementa `resolver_n_reinas(n)` usando backtracking. La función devuelve la l
 
 Implementa también `imprimir_tablero(tablero)` para visualizar la solución en formato tablero de ajedrez.
 
-Prueba tu solución para N = 1, 2, 3, 4, 5, 6, 7, 8. ¿Para cuáles no existe solución?
+Prueba tu solución para N = 1, 2, 3, 4, 5, 6, 7, 8. ¿Para cuáles no existe solución? Para N=2 y N=3
 
 ### Problema 4D — Contando todas las soluciones
 
