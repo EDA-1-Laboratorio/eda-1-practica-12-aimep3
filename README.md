@@ -1,3 +1,5 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/hFIMp7Y-)
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=23986840&assignment_repo_type=AssignmentRepo)
 # Práctica 12 - Estrategias para la construcción de algoritmos II
 
 ## Base documental
@@ -122,15 +124,15 @@ Después de implementar, ejecuta el siguiente experimento y llena la tabla:
 
 | n | T recursivo (s) | T memo (s) | T bottom-up (s) |
 |---:|---:|---:|---:|
-| 10 | | | |
-| 20 | | | |
-| 30 | | | |
-| 35 | | | |
+| 10 | 0.00001500     | 0.00000300 | 0.00000200 |
+| 20 | 0.0018000      | 0.00000600 | 0.00000400 |
+| 30 | 0.22000000     | 0.00000900 | 0.00000600 |
+| 35 | 2.45000000     | 0.00001100 | 0.00000700 |
 
 **Preguntas de análisis:**
-- ¿A partir de qué valor de n el tiempo recursivo se vuelve notablemente mayor?
-- Aplica el test de doblamiento al tiempo recursivo: ¿qué razón r(n) obtienes?
-- Compara la razón con la tabla del Marco metodológico. ¿Qué clase de complejidad te sugiere?
+- ¿A partir de qué valor de n el tiempo recursivo se vuelve notablemente mayor? n=30 o n=35
+- Aplica el test de doblamiento al tiempo recursivo: ¿qué razón r(n) obtienes? r(n)= T(n)/T(n-1)
+- Compara la razón con la tabla del Marco metodológico. ¿Qué clase de complejidad te sugiere? Complejidad exponencial, se simplifica como 0(2^n)
 
 ### Problema 1B — Escalando peldaños
 
@@ -141,9 +143,9 @@ Por ejemplo: para n=3, las formas son (1,1,1), (1,2), (2,1) → **3 formas**.
 Implementa `escaleras_recursivo`, `escaleras_memo` y `escaleras_bottom_up` en el mismo archivo.
 
 **Preguntas de reflexión:**
-- ¿Cuál es la recurrencia matemática de este problema? Escríbela formalmente.
-- ¿En qué se parece a Fibonacci? ¿En qué difiere exactamente (valores de los casos base)?
-- Si el robot también pudiera subir 3 peldaños en un turno, ¿cómo cambiaría la recurrencia?
+- ¿Cuál es la recurrencia matemática de este problema? Escríbela formalmente. escaleras (n)= {1 si n=0,1 si n = 1, escaleras (n-1) + escaleras(n-2)   si 2≤n
+- ¿En qué se parece a Fibonacci? ¿En qué difiere exactamente (valores de los casos base)? Se parece en su estructura. Para resol el problema de tamaño n y necesitas sumar los resultados de los dos subproblemas inmediatamente anteriores.
+- Si el robot también pudiera subir 3 peldaños en un turno, ¿cómo cambiaría la recurrencia? Para 1 peldaño: 1 forma (1). Para 2 peldaños: 2 formas (1,1 y 2). Para 3 peldaños 4 formas (1,1,1; 1,2; 2,1 y 3).
 
 ---
 
@@ -162,19 +164,26 @@ $$\text{caminos}(i, j) = \text{caminos}(i-1, j) + \text{caminos}(i, j-1)$$
 ### Descubrimiento guiado
 
 1. Calcula a mano cuántos caminos hay en una cuadrícula 3×3. Dibuja todos los caminos posibles.
+RRDD
+RDRD
+RDDR
+DRRD
+DRDR
+DDRR
 2. Llena la siguiente tabla con los valores de `caminos(m, n)` para m, n ∈ {1, 2, 3, 4, 5}:
 
    |   | n=1 | n=2 | n=3 | n=4 | n=5 |
    |---|---|---|---|---|---|
-   | **m=1** | | | | | |
-   | **m=2** | | | | | |
-   | **m=3** | | | | | |
-   | **m=4** | | | | | |
-   | **m=5** | | | | | |
+   | **m=1** |1 |1 |1 |1 |1 |
+   | **m=2** |1 |2 |3 |4 |5 |
+   | **m=3** |1 |3 |6 |10 |15 |
+   | **m=4** |1 |4 |10 |20 |35 |
+   | **m=5** |1 |5 |15 |35 |70 |
 
 3. ¿Reconoces el patrón? ¿Qué famosa estructura matemática aparece en la tabla?
+La estructura que se forma es el Triángulo de Pascal, que se puede ver claramente a la hora de voltear el cuadrado 45° y con eso podemos observar como la suma de los números vecinos forman el que le sigue hacia abajo.
 4. Ahora agrega un obstáculo: la celda (1,1) está bloqueada. ¿Cuántos caminos quedan para una cuadrícula 3×3? Razona sin código primero.
-
+Ya que los caminos totales son 6 (y ya los tenemos), podemos deducir fácil que hay 4 caminos que pasan por la celda (1,1) y por ende solo hacemos la resta de 6-4=2 y es el total de caminos posibles que no pasan por la casilla de (1,1).
 ### Problema 2A — Versiones sin obstáculos (archivo: `caminos_cuadricula.py`)
 
 Implementa `caminos_recursivo`, `caminos_memo` y `caminos_bottom_up`. La versión bottom-up devuelve **tanto el resultado como la tabla completa** para poder imprimirla.
@@ -189,7 +198,12 @@ Implementa `caminos_con_obstaculos(grid)` donde `grid` es una matriz de 0s y 1s 
 
 **Preguntas de análisis:**
 - Compara el tiempo de `caminos_recursivo` y `caminos_bottom_up` para una cuadrícula 15×15. Aplica el test de doblamiento.
+Para la cuadrícula de 15x15, el algoritmo "caminos_recursivo" tardó 6.36879640 segundos, mientras que el "caminos_bottom_up" tardó apenas 0.00002954 segundos.
+   Bottom-Up: El factor al dividir la 10x10 entre la 5x5 (el doble) es de 5.312977099, esto nos demuestra que su crecimiento es controlable y proporcional al tamaño de la tabla, a un factor cercano a 4 como lo esperabamos.
+   Recursivo: En este caso, el problema simplemente explota, ya que contrario al caso anterior, en este el factor es de 1465.446097, lo cual nos demuestra que para el algoritmo recursivo, se comienza a poner peor entre más aumentemos el orden de nuestra matriz.
 - ¿Por qué la versión bottom-up no necesita recursión ni pila de llamadas? ¿Qué ventaja práctica tiene eso en lenguajes con límite de profundidad de pila?
+Bottom-up no necesita recursión porque este no construye la solución basandose en la pregunta de "de donde viene esto?", si no que lo que hace es construir la solución desde casos bases o sencillos y asi ir llegando a la solución poco a poco, lo que no obliga a estar llamando a la función cada vez que se quiera hacer o continuar al siguiente paso.
+La ventaja de bottom-up es que al usar arreglos y ciclos en lugar de apilar funciones, esto hace que se consuma muy poca memoria y esto es lo que se busca para que no se llegue a un límite en la recursión y no lleguemos a un error en el programa por falta de memoria.
 
 ---
 
@@ -319,10 +333,12 @@ Q . . .
 
 ### Descubrimiento guiado
 
-1. Para N=4, intenta encontrar a mano una configuración válida. ¿Cuántos intentos necesitaste?
+1. Para N=4, intenta encontrar a mano una configuración válida. ¿Cuántos intentos necesitaste? 4 intentos 
 2. Con la representación de lista `tablero[i] = columna`, ¿qué condición matemática expresa que las reinas en las filas `i` y `j` están en la misma columna?
-3. La condición de diagonal es más sutil. Dos celdas (i, col_i) y (j, col_j) están en la misma diagonal si y solo si $|col_i - col_j| = |i - j|$. ¿Por qué? Dibuja un tablero 4×4 y verifica con un par de ejemplos.
-4. El algoritmo de backtracking para N reinas coloca una reina por fila, de arriba hacia abajo. Antes de colocar la reina en la fila `fila`, solo necesita verificar contra las filas `0` a `fila-1` (las siguientes aún no tienen reina). ¿Por qué esto es una ventaja respecto a usar el verificador O(N²) completo en cada paso?
+tablero[i] == tablero[j]
+3. La condición de diagonal es más sutil. Dos celdas (i, col_i) y (j, col_j) están en la misma diagonal si y solo si $|col_i - col_j| = |i - j|$. ¿Por qué? Dibuja un tablero 4×4 y verifica con un par de ejemplos.   Esto ocurre porque las diagonales de un tablero tienen una inclinación de 45 grados. Para mantenerte en la misma línea diagonal, por cada casilla que te muevas verticalmente (en las filas), debes moverte exactamente la misma cantidad de casillas horizontalmente (en las columnas). Por lo tanto, la "distancia en filas" tiene que ser igual a la "distancia en columnas". Se usan valores absolutos (| |) para que la fórmula funcione en cualquier dirección, eliminando los signos negativos.  
+
+4. El algoritmo de backtracking para N reinas coloca una reina por fila, de arriba hacia abajo. Antes de colocar la reina en la fila `fila`, solo necesita verificar contra las filas `0` a `fila-1` (las siguientes aún no tienen reina). ¿Por qué esto es una ventaja respecto a usar el verificador O(N²) completo en cada paso? Es una ventaja crítica por dos razones fundamentales:Reducción de complejidad temporal: Revisar solo contra las reinas anteriores toma un tiempo lineal de O(N). Si usáramos el verificador completo, estaríamos forzando al programa a hacer un doble ciclo comparando todas las casillas vacías tomando tiempo cuadrático O(N^2) en cada pequeñísimo paso.Poda temprana (Pruning): Al verificar de forma incremental, si colocamos una reina en la fila 2 y choca con la de la fila 0, el algoritmo aborta inmediatamente. Si usáramos el verificador completo, tendríamos que rellenar inútilmente las filas 3, 4, 5... para mandarle el tablero lleno al verificador y que recién ahí nos diga que la posición original en la fila 2 estaba mal.
 
 ### Problema 4A — Verificador (archivo: `n_reinas.py`)
 
@@ -342,7 +358,7 @@ Implementa `resolver_n_reinas(n)` usando backtracking. La función devuelve la l
 
 Implementa también `imprimir_tablero(tablero)` para visualizar la solución en formato tablero de ajedrez.
 
-Prueba tu solución para N = 1, 2, 3, 4, 5, 6, 7, 8. ¿Para cuáles no existe solución?
+Prueba tu solución para N = 1, 2, 3, 4, 5, 6, 7, 8. ¿Para cuáles no existe solución? Para N=2 y N=3
 
 ### Problema 4D — Contando todas las soluciones
 
@@ -352,14 +368,14 @@ Llena la siguiente tabla:
 
 | N | Soluciones |
 |---:|---:|
-| 1 | |
-| 2 | |
-| 3 | |
-| 4 | |
-| 5 | |
-| 6 | |
-| 7 | |
-| 8 | |
+| 1 | 1 |
+| 2 | 0 |
+| 3 | 0 |
+| 4 | 2 |
+| 5 | 10 |
+| 6 | 4 |
+| 7 | 40 |
+| 8 | 92 |
 
 La secuencia resultante es conocida en matemáticas. Búscala en [OEIS A000170](https://oeis.org/A000170).
 
@@ -369,9 +385,19 @@ Mide el tiempo de `contar_soluciones(n)` para n = 4, 6, 8, 10, 12 y aplica el te
 
 **Preguntas de reflexión:**
 - ¿Qué razón r(n) observas? ¿A qué clase de complejidad corresponde?
+  Observo que la razón r(n) no es constante, sino que crece de forma acelerada con cada incremento (pasando de aproximadamente 300, a 670, y luego a 939 según los datos). Si el algoritmo tuviera una complejidad polinomial, esta razón tendería a estabilizarse o decrecer. El hecho de que la razón se dispare indica que el algoritmo pertenece a una clase de complejidad exponencial (O(c^N)) o factorial (O(N!)). 
+
 - El backtracking poda ramas inválidas. Si *no* hicieras ninguna poda (generaras todas las permutaciones y luego verificaras con `es_valida`), ¿cuántas configuraciones tendrías que verificar para N=8? (Pista: el número de permutaciones de 8 elementos es 8!).
+  Si generamos todas las permutaciones garantizando únicamente que no se repitan filas ni columnas (pero sin verificar las diagonales tempranamente), tendríamos que calcular el factorial de 8. La operación es: 8! = 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = 40,320 configuraciones. 
+
 - Compara ese número con la cantidad de nodos que realmente visita el backtracking con poda. ¿Por qué la poda hace una diferencia tan grande?
+  El número de 40,320 configuraciones es abismalmente mayor que los nodos que visita el backtracking (el cual solo llega hasta el final en las 92 soluciones correctas y unas cuantas ramas cercanas). 
+La poda hace una diferencia gigantesca porque elimina ramas completas desde la raíz. Si el algoritmo coloca la reina de la fila 0 y la reina de la fila 1 y detecta que ya se atacan en diagonal, detiene esa búsqueda de inmediato. Al hacer esto, se ahorra generar y verificar las 6! = 720 combinaciones posibles que existirían para las filas restantes debajo de ese error. 
+
 - Retoma la discusión de verificación vs búsqueda: para el problema de *contar* soluciones (no solo encontrar una), ¿crees que existe un algoritmo eficiente? ¿Por qué?
+  No existe un algoritmo eficiente (de tiempo polinomial) conocido para el problema de contar todas las soluciones. 
+Mientras que el problema de verificación es rápido y pertenece a la clase NP (toma un tiempo O(N^2) revisar un tablero lleno), y encontrar una sola solución también puede hacerse con atajos matemáticos, contar exige explorar de forma exhaustiva el árbol de decisiones para asegurar que no falte ninguna configuración válida. Este problema de conteo pertenece a la clase de complejidad #P-completo (Sharp-P completo), lo que significa que sufre de una explosión combinatoria ineludible a medida que crece N. 
+
 
 ---
 

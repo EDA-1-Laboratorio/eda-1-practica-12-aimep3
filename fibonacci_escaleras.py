@@ -69,8 +69,21 @@ def fib_recursivo(n: int) -> int:
     #   Para n >= 2, la respuesta depende de dos subproblemas más pequeños.
     #   Escribe exactamente la fórmula matemática como código Python.
     #   No intentes optimizarla todavía; la claridad es el objetivo aquí.
+    """
+    Calcula F(n) usando recursión directa.
+    """
+    # Paso 1 
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
 
-    pass  # TODO: elimina este pass e implementa los tres pasos
+    # Paso 2
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    # Paso 3 
+    return fib_recursivo(n - 1) + fib_recursivo(n - 2)   
 
 
 def fib_memo(n: int, memo: dict = None) -> int:
@@ -117,8 +130,30 @@ def fib_memo(n: int, memo: dict = None) -> int:
     #   guárdalo en memo[n], y luego devuélvelo.
     #   En una sola línea: memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)
     #                      return memo[n]
+    """
+    Calcula F(n) con recursión + memoización (top-down).
+    """
+    # Paso 1
+    if memo is None:
+        memo = {}
 
-    pass  # TODO
+    # Paso 2
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
+
+    # Paso 3
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    # Paso 4
+    if n in memo:
+        return memo[n]
+
+    # Paso 5
+    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+    return memo[n]    
 
 
 def fib_bottom_up(n: int) -> int:
@@ -162,8 +197,32 @@ def fib_bottom_up(n: int) -> int:
     #       tabla[i] = tabla[i-1] + tabla[i-2]
 
     # PASO 6 – Devuelve tabla[n].
+    """
+    Calcula F(n) con tabulación iterativa (bottom-up).
+    """
+    # Paso 1
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
 
-    pass  # TODO
+    # Paso 2
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    # Paso 3
+    tabla = [0] * (n + 1)
+
+    # Paso 4
+    tabla[0] = 0
+    tabla[1] = 1
+
+    # Paso 5
+    for i in range(2, n + 1):
+        tabla[i] = tabla[i - 1] + tabla[i - 2]
+
+    # Paso 6
+    return tabla[n]    
 
 
 # ============================================================
@@ -216,8 +275,21 @@ def escaleras_recursivo(n: int) -> int:
     #               son n=0 y n=1; comprueba que funcione antes de omitirlo)
 
     # PASO 3 – Caso recursivo: misma estructura que fib_recursivo.
+    """
+    Cuenta las formas de subir n peldaños (1 o 2 a la vez) — versión recursiva.
+    """
+    # Paso 1
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
 
-    pass  # TODO
+    # Paso 1
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1
+
+    # Paso 2
+    return escaleras_recursivo(n - 1) + escaleras_recursivo(n - 2)    
 
 
 def escaleras_memo(n: int, memo: dict = None) -> int:
@@ -231,8 +303,26 @@ def escaleras_memo(n: int, memo: dict = None) -> int:
     """
     # Sigue los mismos pasos que fib_memo:
     # inicializa memo → valida n → casos base → revisa caché → recursivo+guardado.
+    """
+    Cuenta las formas de subir n peldaños — versión con memoización.
+    """
+    # Sigue los mismos pasos que fib_memo
+    if memo is None:
+        memo = {}
 
-    pass  # TODO
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
+
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1
+
+    if n in memo:
+        return memo[n]
+
+    memo[n] = escaleras_memo(n - 1, memo) + escaleras_memo(n - 2, memo)
+    return memo[n]    
 
 
 def escaleras_bottom_up(n: int) -> int:
@@ -246,8 +336,26 @@ def escaleras_bottom_up(n: int) -> int:
         (o i >= 2 si tu caso base es solo tabla[0] y tabla[1]).
     """
     # Sigue la misma estructura que fib_bottom_up.
+    """
+    Cuenta las formas de subir n peldaños — versión tabulación iterativa.
+    """
+    # Sigue la misma estructura que fib_bottom_up
+    if n < 0:
+        raise ValueError("n debe ser >= 0")
 
-    pass  # TODO
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1
+
+    tabla = [0] * (n + 1)
+    tabla[0] = 1
+    tabla[1] = 1
+
+    for i in range(2, n + 1):
+        tabla[i] = tabla[i - 1] + tabla[i - 2]
+
+    return tabla[n]    
 
 
 # ============================================================
