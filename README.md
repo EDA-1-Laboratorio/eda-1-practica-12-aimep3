@@ -366,14 +366,14 @@ Llena la siguiente tabla:
 
 | N | Soluciones |
 |---:|---:|
-| 1 | |
-| 2 | |
-| 3 | |
-| 4 | |
-| 5 | |
-| 6 | |
-| 7 | |
-| 8 | |
+| 1 | 1 |
+| 2 | 0 |
+| 3 | 0 |
+| 4 | 2 |
+| 5 | 10 |
+| 6 | 4 |
+| 7 | 40 |
+| 8 | 92 |
 
 La secuencia resultante es conocida en matemáticas. Búscala en [OEIS A000170](https://oeis.org/A000170).
 
