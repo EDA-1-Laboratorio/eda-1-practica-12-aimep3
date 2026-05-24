@@ -383,9 +383,19 @@ Mide el tiempo de `contar_soluciones(n)` para n = 4, 6, 8, 10, 12 y aplica el te
 
 **Preguntas de reflexión:**
 - ¿Qué razón r(n) observas? ¿A qué clase de complejidad corresponde?
+  Observo que la razón r(n) no es constante, sino que crece de forma acelerada con cada incremento (pasando de aproximadamente 300, a 670, y luego a 939 según los datos). Si el algoritmo tuviera una complejidad polinomial, esta razón tendería a estabilizarse o decrecer. El hecho de que la razón se dispare indica que el algoritmo pertenece a una clase de complejidad exponencial (O(c^N)) o factorial (O(N!)). 
+
 - El backtracking poda ramas inválidas. Si *no* hicieras ninguna poda (generaras todas las permutaciones y luego verificaras con `es_valida`), ¿cuántas configuraciones tendrías que verificar para N=8? (Pista: el número de permutaciones de 8 elementos es 8!).
+  Si generamos todas las permutaciones garantizando únicamente que no se repitan filas ni columnas (pero sin verificar las diagonales tempranamente), tendríamos que calcular el factorial de 8. La operación es: 8! = 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = 40,320 configuraciones. 
+
 - Compara ese número con la cantidad de nodos que realmente visita el backtracking con poda. ¿Por qué la poda hace una diferencia tan grande?
+  El número de 40,320 configuraciones es abismalmente mayor que los nodos que visita el backtracking (el cual solo llega hasta el final en las 92 soluciones correctas y unas cuantas ramas cercanas). 
+La poda hace una diferencia gigantesca porque elimina ramas completas desde la raíz. Si el algoritmo coloca la reina de la fila 0 y la reina de la fila 1 y detecta que ya se atacan en diagonal, detiene esa búsqueda de inmediato. Al hacer esto, se ahorra generar y verificar las 6! = 720 combinaciones posibles que existirían para las filas restantes debajo de ese error. 
+
 - Retoma la discusión de verificación vs búsqueda: para el problema de *contar* soluciones (no solo encontrar una), ¿crees que existe un algoritmo eficiente? ¿Por qué?
+  No existe un algoritmo eficiente (de tiempo polinomial) conocido para el problema de contar todas las soluciones. 
+Mientras que el problema de verificación es rápido y pertenece a la clase NP (toma un tiempo O(N^2) revisar un tablero lleno), y encontrar una sola solución también puede hacerse con atajos matemáticos, contar exige explorar de forma exhaustiva el árbol de decisiones para asegurar que no falte ninguna configuración válida. Este problema de conteo pertenece a la clase de complejidad #P-completo (Sharp-P completo), lo que significa que sufre de una explosión combinatoria ineludible a medida que crece N. 
+
 
 ---
 
